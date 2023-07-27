@@ -255,17 +255,19 @@ console.log(copyAndSwapElements([1, 2, 3, 4, 5], 0, 2, 4)); // Виведе [3, 
  * Повертає: Відсортований масив об'єктів.
  */
 function sortByKey(arr, key) {
-  let a = 0
-  let b = 0
-  arr.sort(a[key], b[key]);
-  if(a[key] < b[key]){
-    return -1;
-  };
-  if(a[key] > b[key]){
-    return 1
-  } else {
-    return 0
-  };
+  
+  arr.sort((a, b) => {
+    if(a[key] < b[key]){
+      return -1;
+    };
+    if(a[key] > b[key]){
+      return 1
+    } else {
+      return 0
+    };
+  });
+  return arr
+  
   
   // Використовуємо метод `sort` передаємо в нього два аргументи a та b, для сортування масиву об'єктів за заданим ключем
   // якщо a[key] < b[key] повертаємо -1
@@ -463,8 +465,13 @@ console.log(customAt([1, 2, 3, 4, 5], 2));
   Повертає: Результат перевірки.
   */
 function customIncludes(arr, element) {
-  const result = [arr.indexOf(element), arr.includes(element)]
-  return result
+  const b = arr.filter((a, index) => {
+    if(a === element){
+      return index
+    }
+  })
+  
+  return [b.length, b.includes(element)]
   // Перевіряємо, чи вхідний параметр є масивом
   // Використовуємо метод includes для перевірки наявності елемента в масиві
   // За допомогою методу filter перевіряємо скільки разів в масиві зустрічається елемент та виводимо число в консоль
